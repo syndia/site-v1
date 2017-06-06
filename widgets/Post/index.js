@@ -51,6 +51,10 @@ const HOC = compose(
       opacity: .4,
     },
 
+    center: {
+      textAlign: 'center',
+    },
+
     author: {
       flexDirection: 'column',
     },
@@ -68,25 +72,40 @@ const HOC = compose(
     },
 
     preview: {
-      textAlign: 'center',
-    }
+      width: 272,
+      flexShrink: 1,
+      minWidth: 240,
+      paddingVertical: 30,
+      paddingHorizontal: 30,
+    },
+
+    box: {
+      width: '50%',
+      flexShrink: 1,
+      minWidth: 250,
+      paddingVertical: 0,
+    },
   }),
 )
 
 const Component = ({ body, date, id, title, isPreview, styles, config }) => (
-  <View style={ styles.root }>
-    <Container style={ styles.container }>
+  <View style={ [styles.root, isPreview && styles.box] }>
       { ! isPreview &&
-        <View>
-          <AuthorMeta styles={ styles } />
-          <View style={ styles.meta }>
-            { config.date.display &&
-              <Text  style={ styles.text }>
-                <DateComponent value={ new Date(date) } />
-              </Text>
-            }
+        <Container style={ styles.container }>
+          <View>
+            <AuthorMeta styles={ styles } />
+            <View style={ styles.meta }>
+              { config.date.display &&
+                <Text  style={ styles.text }>
+                  <DateComponent value={ new Date(date) } />
+                </Text>
+              }
+            </View>
+            <View style={ { paddingTop: 20 } }>
+              <BodyRenderer>{ body }</BodyRenderer>
+            </View>
           </View>
-        </View>
+        </Container>
       }
 
       { isPreview &&
@@ -96,20 +115,13 @@ const Component = ({ body, date, id, title, isPreview, styles, config }) => (
           </Text>
           <View style={ styles.meta }>
             { config.date.display &&
-              <Text style={ styles.text }>
+              <Text style={ [styles.text, styles.center] }>
                 <DateComponent value={ new Date(date) } />
               </Text>
             }
           </View>
        </View>
       }
-
-      <View style={ { paddingTop: 20 } }>
-        {
-          !isPreview && <BodyRenderer>{ body }</BodyRenderer>
-        }
-      </View>
-    </Container>
   </View>
 )
 
