@@ -5,6 +5,8 @@ import { View } from 'react-primitives'
 
 import withStyle from '../../helpers/withStyle'
 
+import Post from '../../widgets/Post'
+
 import Flex from '../../internals/Flex'
 
 const HOC = compose(
@@ -15,9 +17,9 @@ const HOC = compose(
   }),
 )
 
-const Component = ({ itemComponent, items, onItemClick, config, styles }) => (
-  <Flex style={ styles.root }>
-    { items && items.node && items.node.list && items.node.list.map((item, index) => createEagerElement(itemComponent, {
+const List = ({ items, onItemClick, config, styles }) => (
+  <Flex>
+    { items && items.node && items.node.list && items.node.list.map((item, index) => createEagerElement(Post, {
       ...item,
       key: `item-${ item.id || index }`,
       config: {
@@ -28,6 +30,6 @@ const Component = ({ itemComponent, items, onItemClick, config, styles }) => (
   </Flex>
 )
 
-export default createContainer(HOC(Component), ({ collection, singleItem, ...rest }) => ({
-  items: query({ collection, ...rest }),
+export default createContainer(List, props => ({
+  items: query({ collection: 'articles', props }),
 }))

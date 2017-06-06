@@ -51,15 +51,19 @@ const Component = ({ styles }) => (
       </Text>
       <View style={ styles.row }>
         <Image style={ styles.box } />
-        <View style={ [styles.box, styles.left] }>
-          <h2>{ "Design what you want." }</h2>
-          <p>{ "I like to keep it simple. My goals are to focus on typography, content and conveying the message that you want to send." }</p>
+        <View style={ styles.box }>
+          <Text style={ styles.left }>
+            <h2>{ "Design what you want." }</h2>
+            <p>{ "I like to keep it simple. My goals are to focus on typography, content and conveying the message that you want to send." }</p>
+          </Text>
         </View>
       </View>
       <View style={ styles.row }>
-        <View style={ [styles.box, styles.right] }>
-          <h2>{ "Develop what you need." }</h2>
-          <p>{ "I'm a developer, so I know how to create your website to run across devices using the latest technologies available." }</p>
+       <View style={ styles.box }>
+          <Text style={ styles.right }>
+            <h2>{ "Develop what you need." }</h2>
+            <p>{ "I'm a developer, so I know how to create your website to run across devices using the latest technologies available." }</p>
+          </Text>
         </View>
         <Image style={ styles.box } />
       </View>

@@ -18,7 +18,7 @@ const HOC = compose(
 const Component = ({ config, children }) => (
   <Layout>
     <Header title={ "Syndia's - Blog" } />
-    <MarkdownList collection="articles" sortBy="date" itemComponent={ Post } config={ config } />
+    <MarkdownList config={ config } />
     { children }
     <Footer />
   </Layout>
