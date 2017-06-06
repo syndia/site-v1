@@ -2,10 +2,15 @@ import React from 'react'
 import { compose, setDisplayName } from 'recompose'
 import Head from 'react-helmet'
 import { View, Text } from 'react-primitives'
+import { mapStyle } from 'highstyle'
 
 import withStyle from '../../helpers/withStyle'
 
+import BackgroundGradient from '../../internals/BackgroundGradient'
 import Container from '../../internals/Container'
+import Teaser from '../../internals/Teaser'
+
+import Masterbar from '../Masterbar'
 
 const HOC = compose(
   setDisplayName('LayoutHeader'),
@@ -18,7 +23,6 @@ const HOC = compose(
     },
 
     hero: {
-      paddingTop: 40,
       paddingBottom: 60,
     },
 
@@ -27,17 +31,29 @@ const HOC = compose(
       fontWeight: '200',
       textAlign: 'center',
     },
-  })
+
+    heroFullScreen: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: 'calc(100vh - 78px)',
+    }
+  }),
 )
 
-const Component = ({ title, styles, children }) => (
-  <View style={ styles.root }>
-    <Head><title>{ title }</title></Head>
-    <Container style={ styles.hero }>
+const Component = ({ title, teaser, isFullScreen, styles, config, children }) => (
+  <BackgroundGradient
+    start="rgb(255, 255, 255)"
+    end="rgb(235, 228, 224)"
+    style={ [styles.root] }
+  >
+    <Masterbar />
+    <Container style={ [styles.hero, isFullScreen && styles.heroFullScreen] }>
+      <Head><title>{ title }</title></Head>
       <Text style={ styles.heroText}>{ title }</Text>
+      { teaser && <Teaser text={ teaser } config={ config } />}
       { children && <View>{ children }</View> }
     </Container>
-  </View>
+  </BackgroundGradient>
 )
 
 export const Header = HOC(Component)

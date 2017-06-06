@@ -33,6 +33,7 @@
     "@phenomic/core": "^1.0.0-alpha.2",
     "@phenomic/preset-react-app": "^1.0.0-alpha.2",
     "date-fns": "^1.28.5",
+    "highstyle": "^0.2.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-google-analytics": "^0.2.0",

@@ -8,7 +8,7 @@ const HOC = compose(
   setDisplayName('Sidebar'),
 
   withStyle({
-    flexDirection: 'column',
+    root: {},
   }),
 )
 

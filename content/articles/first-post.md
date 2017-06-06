@@ -1,5 +1,6 @@
 ---
 title: Markdown
+teaser: If you are new to Markdown, you might want to read this article
 authors:
   - Syndia
   - John Ripke

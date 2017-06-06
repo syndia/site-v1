@@ -7,13 +7,14 @@ import withConfig from '../helpers/withConfig'
 import withStyle from '../helpers/withStyle'
 
 import Layout, { Footer, Header, Sidebar } from '../layout'
-import Post from '../widgets/Post'
+import Post, { Teaser } from '../widgets/Post'
 
 const HOC = compose(
   setDisplayName('Post'),
 
   withConfig({
-    post: {}
+    post: {
+    }
   }),
 
   withStyle({
@@ -25,11 +26,9 @@ const Component = ({ post, styles, config, children }) => (
   <Layout style={ styles.root } hasSidebar>
     { post && post.node &&
       <View>
-        <Header title={ post.node.title } />
+        <Header title={ post.node.title } teaser={ post.node.teaser } config={ config } />
         <Post { ...post.node } config={ config.post } isPreview={ false } />
-        <Sidebar>
-          <li>POSTED: </li>
-        </Sidebar>
+        <Sidebar />
         <Footer />
       </View>
     }
