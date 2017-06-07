@@ -9,6 +9,7 @@ import withStyle from '../../helpers/withStyle'
 import BackgroundGradient from '../../internals/BackgroundGradient'
 import Container from '../../internals/Container'
 import Teaser from '../../internals/Teaser'
+import Hero from '../../widgets/Hero'
 
 import Masterbar from '../Masterbar'
 
@@ -40,19 +41,21 @@ const HOC = compose(
   }),
 )
 
-const Component = ({ title, teaser, isFullScreen, styles, config, children }) => (
+const Component = ({ title, teaser, hero, isFullScreen, styles, config, children }) => (
   <BackgroundGradient
     start="rgb(255, 255, 255)"
     end="rgb(235, 228, 224)"
     style={ [styles.root] }
   >
-    <Masterbar />
-    <Container style={ [styles.hero, isFullScreen && styles.heroFullScreen] }>
-      <Head><title>{ title }</title></Head>
-      <Text style={ styles.heroText}>{ title }</Text>
-      { teaser && <Teaser text={ teaser } config={ config } />}
-      { children && <View>{ children }</View> }
-    </Container>
+    <Hero { ...hero }>
+      <Masterbar darkContrast={ hero && hero.dark } />
+      <Container style={ [styles.hero, isFullScreen && styles.heroFullScreen] }>
+        <Head><title>{ title }</title></Head>
+        <Text style={ styles.heroText}>{ title }</Text>
+        { teaser && <Teaser text={ teaser } config={ config } />}
+        { children && <View>{ children }</View> }
+      </Container>
+    </Hero>
   </BackgroundGradient>
 )
 

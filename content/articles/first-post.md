@@ -1,11 +1,18 @@
 ---
 title: Markdown
 teaser: If you are new to Markdown, you might want to read this article
+hero:
+  id: "1496715976403-7e36dc43f17b"
+  caption: "Photo by Jeremy Bishop"
+  orientation: "landscape"
+  dark: true
 authors:
-  - Syndia
   - John Ripke
 date: 2016-02-14
 type: post
+tags:
+  - react
+  - markdown
 ---
 
 # This is a [Markdown](https://en.wikipedia.org/wiki/Markdown#Example) file

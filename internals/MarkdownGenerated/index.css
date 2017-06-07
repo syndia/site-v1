@@ -1,0 +1,49 @@
+.phenomic-Markdown h1,
+.phenomic-Markdown h2,
+.phenomic-Markdown h3,
+.phenomic-Markdown h4,
+.phenomic-Markdown h5,
+.phenomic-Markdown h6 {
+  position: relative;
+}
+
+.phenomic-Markdown h1 {
+  font-weight: 400;
+}
+
+.phenomic-Markdown .phenomic-HeadingAnchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -32px;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 20px;
+  text-decoration: none;
+  opacity: 0.1;
+  transition: opacity 0.2s;
+}
+
+.phenomic-Markdown h1:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h2:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h3:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h4:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h5:hover .phenomic-HeadingAnchor,
+.phenomic-Markdown h6:hover .phenomic-HeadingAnchor{
+  opacity: 1;
+}
+
+.phenomic-Markdown {
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+.phenomic-Markdown a {
+  color: #333;
+  opacity: 0.8;
+}
+
+.phenomic-Markdown a:hover {
+  opacity: 1;
+}

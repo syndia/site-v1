@@ -6,6 +6,9 @@ authors:
   - John Ripke
 date: 2016-02-14
 type: post
+tags:
+  - react
+  - markdown
 ---
 
 # This is a [Markdown](https://en.wikipedia.org/wiki/Markdown#Example) file

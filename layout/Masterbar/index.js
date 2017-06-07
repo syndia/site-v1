@@ -26,7 +26,6 @@ const HOC = compose(
       fontSize: 30,
       fontWeight: '700',
       textDecorationLine: 'none',
-      color: '#333',
     },
 
     brand: {
@@ -71,6 +70,10 @@ const HOC = compose(
       fontWeight: '700',
     },
 
+    colorWhite: {
+      color: 'white',
+    },
+
     pipe: {
       fontSize: 20,
       fontWeight: '200',
@@ -79,31 +82,35 @@ const HOC = compose(
   }),
 )
 
-const Component = ({ styles }) => (
+const Component = ({ darkContrast, styles }) => (
   <View style={ styles.root }>
     <View style={ styles.brand }>
       <Link to="/" style={ styles.text }>
-        { "Syndia.nl" }
+        <Text style={ [styles.linkText, darkContrast && styles.colorWhite]}>
+          { "Syndia.nl" }
+        </Text>
       </Link>
       <Link href="https://github.com/syndia/site-v1/releases" style={ styles.version }>
-        { `v${ version }` }
+        <Text style={ [styles.linkText, darkContrast && styles.colorWhite] }>
+          { `v${ version }` }
+        </Text>
       </Link>
     </View>
     <View style={ styles.navigation }>
       <Link to="/blog" style={ styles.link } activeStyle={ styles.linkActive }>
-        <Text style={ styles.linkText }>
+        <Text style={ [styles.linkText, darkContrast && styles.colorWhite] }>
           { "Blog" }
         </Text>
       </Link>
       <Link to="/showcase" style={ styles.link } activeStyle={ styles.linkActive }>
-        <Text style={ [styles.linkText, styles.linkBold] }>
+        <Text style={ [styles.linkText, styles.linkBold, darkContrast && styles.colorWhite] }>
           { "Portfolio" }
         </Text>
       </Link>
       <Text style={styles.pipe}>{" | "}</Text>
-      <SocialItem link="https://twitter.com/syndianl" showName style={ styles.link } textStyle={ styles.linkText } />
-      <SocialItem link="https://linkedin.com/syndia" showName style={ styles.link } textStyle={ styles.linkText } />
-      <SocialItem link="https://github.com/syndia" showName style={ styles.link } textStyle={ styles.linkText } />
+      <SocialItem link="https://twitter.com/syndianl" showName style={ styles.link } textStyle={ [styles.linkText, darkContrast && styles.colorWhite] } />
+      <SocialItem link="https://linkedin.com/syndia" showName style={ styles.link } textStyle={ [styles.linkText, darkContrast && styles.colorWhite] } />
+      <SocialItem link="https://github.com/syndia" showName style={ styles.link } textStyle={ [styles.linkText, darkContrast && styles.colorWhite] } />
     </View>
   </View>
 )

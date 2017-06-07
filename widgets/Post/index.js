@@ -1,12 +1,13 @@
 import React from 'react'
 import { compose, defaultProps, setDisplayName, withHandlers } from 'recompose'
-import { BodyRenderer } from '@phenomic/preset-react-app/lib/client'
-import { Text, View } from 'react-primitives'
+import { Image, Text, View } from 'react-primitives'
 
 import withConfig from '../../helpers/withConfig'
 import withStyle from '../../helpers/withStyle'
 
+import Flex from '../../internals/Flex'
 import Container from '../../internals/Container'
+import { MarkdownGenerated } from '../../internals/MarkdownGenerated'
 import { DateComponent } from '../../internals/DateTime'
 import Link from '../../internals/Link'
 
@@ -89,40 +90,43 @@ const HOC = compose(
 )
 
 const Component = ({ body, date, id, title, isPreview, styles, config }) => (
-  <View style={ [styles.root, isPreview && styles.box] }>
-      { ! isPreview &&
-        <Container style={ styles.container }>
-          <View>
-            <AuthorMeta styles={ styles } />
+  <Flex>
+    <View style={ [styles.root, isPreview && styles.box] }>
+        { ! isPreview &&
+          <Container style={ styles.container }>
+            <View>
+              <AuthorMeta styles={ styles } />
+              <View style={ styles.meta }>
+                { config.date.display &&
+                  <Text  style={ styles.text }>
+                    <DateComponent value={ new Date(date) } />
+                  </Text>
+                }
+              </View>
+              <View style={ { paddingTop: 20 } }>
+                <MarkdownGenerated body={ body } />
+              </View>
+            </View>
+          </Container>
+        }
+
+        { isPreview &&
+          <View style={ styles.preview }>
+            <Text style={ styles.heading }>
+              <Link to={ `/articles/${ id }` }>{ title || id }</Link>
+            </Text>
             <View style={ styles.meta }>
               { config.date.display &&
-                <Text  style={ styles.text }>
+                <Text style={ [styles.text, styles.center] }>
                   <DateComponent value={ new Date(date) } />
                 </Text>
               }
             </View>
-            <View style={ { paddingTop: 20 } }>
-              <BodyRenderer>{ body }</BodyRenderer>
-            </View>
-          </View>
-        </Container>
-      }
-
-      { isPreview &&
-        <View style={ styles.preview }>
-          <Text style={ styles.heading }>
-            <Link to={ `/articles/${ id }` }>{ title || id }</Link>
-          </Text>
-          <View style={ styles.meta }>
-            { config.date.display &&
-              <Text style={ [styles.text, styles.center] }>
-                <DateComponent value={ new Date(date) } />
-              </Text>
-            }
-          </View>
-       </View>
-      }
-  </View>
+            <Image />
+        </View>
+        }
+    </View>
+  </Flex>
 )
 
 export default HOC(Component)
