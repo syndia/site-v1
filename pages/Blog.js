@@ -47,7 +47,7 @@ const Component = ({ articles, isLoading, params, config, styles }) => (
           { "You are currently viewing articles that match "}
           <em>{ params.tag }</em>
           { " tag. "}
-          <Link to="/blog/" style={ styles.filterMessageLink }>
+          <Link to="/articles" style={ styles.filterMessageLink }>
             { "View all." }
           </Link>
         </Text>
