@@ -17,9 +17,9 @@ const HOC = compose(
   }),
 )
 
-const List = ({ items, onItemClick, config, styles }) => (
+const List = ({ items, isLoading, onItemClick, config, styles }) => (
   <Flex>
-    { items && items.node && items.node.list && items.node.list.map((item, index) => createEagerElement(Post, {
+    { !isLoading && items.node && items.node.list && items.node.list.map((item, index) => createEagerElement(Post, {
       ...item,
       key: `item-${ item.id || index }`,
       config: {

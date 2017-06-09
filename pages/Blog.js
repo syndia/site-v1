@@ -53,7 +53,7 @@ const Component = ({ articles, isLoading, params, config, styles }) => (
         </Text>
       }
 
-      { !isLoading && <ArticleList items={ articles.node.list } config={ config } /> }
+      { !isLoading && articles.node && <ArticleList items={ articles.node.list } config={ config } /> }
 
       <Pagination path="/articles" items={ articles } />
     </Container>

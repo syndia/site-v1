@@ -30,10 +30,10 @@ const HOC = compose(
     },
   }),
 
-  mapProps(({ items, currentArticle, ...rest }) => {
+  mapProps(({ isLoading, items, currentArticle, ...rest }) => {
     const articles = []
 
-    items && items.node && items.node.list && items.node.list.forEach(item => {
+    !isLoading && items.node && items.node.list && items.node.list.forEach(item => {
       if (item.title !== currentArticle.node.title) articles.push(item)
     })
 
