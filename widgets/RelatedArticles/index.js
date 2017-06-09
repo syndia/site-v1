@@ -33,7 +33,7 @@ const HOC = compose(
   mapProps(({ items, currentArticle, ...rest }) => {
     const articles = []
 
-    items.node && items.node.list && items.node.list.forEach(item => {
+    items && items.node && items.node.list && items.node.list.forEach(item => {
       if (item.title !== currentArticle.node.title) articles.push(item)
     })
 
