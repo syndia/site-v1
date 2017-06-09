@@ -13,7 +13,7 @@ import Home from './pages/Home'
 const routes = () => (
   <Router history={ browserHistory }>
     <Route path="/" component={ Home } />
-    <Route path="articles/tag/:tag" component={ Blog } collection="articles" />
+    <Route path="articles/tags/:tags" component={ Blog } collection="articles" />
     <Route path="articles/after/:after" component={ Blog } collection="articles" paginated />
     <Route path="articles/*" component={ Article } collection="articles" />
     <Route path="articles" component={ Blog } />

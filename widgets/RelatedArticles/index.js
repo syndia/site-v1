@@ -56,7 +56,7 @@ const Component = ({ articles, config, styles }) => (
 export default createContainer(HOC(Component), props => ({
   items: query({
     collection: 'articles',
-    ...(props.tags ? { by: 'tags', value: encodeURIComponent(props.tags) } : {}),
+    ...(props.tags ? { by: 'tags', value: props.tags } : {}),
     limit: 4,
   }),
 }))

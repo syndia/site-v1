@@ -42,10 +42,10 @@ const Component = ({ articles, isLoading, params, config, styles }) => (
   <Layout>
     <Header title={ "Syndia's - Blog" } />
     <Container style={ styles.root }>
-      { params && params.tag &&
+      { params && params.tags &&
         <Text style={ styles.filterMessage }>
           { "You are currently viewing articles that match "}
-          <em>{ params.tag }</em>
+          <em>{ params.tags }</em>
           { " tag. "}
           <Link to="/articles" style={ styles.filterMessageLink }>
             { "View all." }
@@ -67,6 +67,6 @@ export default createContainer(HOC(Component), props => ({
     limit: 3,
     sortBy: 'date',
     ...(props.params.after ? { after: props.params.after } : null ),
-    ...(props.params.tag ? { by: 'tags', value: props.params.tag } : {}),
+    ...(props.params.tags ? { by: 'tags', value: props.params.tags } : {}),
   })
 }))

@@ -9,7 +9,7 @@ const rawStyle = {
 
 const makeGradient = (start, end, direction = 'to bottom right') => ({
   backgroundColor: start,
-  background: `linear-gradient(${ direction }, ${ start }, ${ end }`,
+  background: `linear-gradient(${ direction }, ${ start }, ${ end })`,
 })
 
 const HOC = compose(

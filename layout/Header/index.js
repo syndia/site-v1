@@ -42,7 +42,7 @@ const Component = ({ title, teaser, hero, isFullScreen, styles, config, children
   <BackgroundGradient
     start="rgb(255, 255, 255)"
     end="rgb(235, 228, 224)"
-    style={ [styles.root] }
+    style={ styles.root }
   >
     <Hero { ...hero }>
       <Masterbar darkContrast={ hero && hero.dark } />

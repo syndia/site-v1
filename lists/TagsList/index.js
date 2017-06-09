@@ -32,7 +32,7 @@ const Component = ({ parent, items, styles }) => (
   <View style={ styles.root }>
     {
       items && items.map(tag => (
-        <Link key={ tag } to={ `/${ parent }/tag/${ tag }` } style={ styles.itemLink }>
+        <Link key={ tag } to={ `/${ parent }/tags/${ tag }` } style={ styles.itemLink }>
           <Text style={ styles.itemText }>{ tag }</Text>
         </Link>
       ))
