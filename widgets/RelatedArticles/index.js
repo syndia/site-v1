@@ -3,6 +3,7 @@ import { compose, mapProps, setDisplayName } from 'recompose'
 import { createContainer, query } from '@phenomic/preset-react-app/lib/client'
 import { Text } from 'react-primitives'
 
+import withLoadingCheck from '../../helpers/withLoadingCheck'
 import withConfig from '../../helpers/withConfig'
 import withStyle from '../../helpers/withStyle'
 import Flex from '../../internals/Flex'
@@ -30,10 +31,12 @@ const HOC = compose(
     },
   }),
 
-  mapProps(({ isLoading, items, currentArticle, ...rest }) => {
+  withLoadingCheck,
+
+  mapProps(({ items, currentArticle, ...rest }) => {
     const articles = []
 
-    !isLoading && items.node && items.node.list && items.node.list.forEach(item => {
+    items && items.node && items.node.list && items.node.list.forEach(item => {
       if (item.title !== currentArticle.node.title) articles.push(item)
     })
 
@@ -41,7 +44,8 @@ const HOC = compose(
       ...rest,
       articles,
     }
-  })
+  }),
+
 )
 
 const Component = ({ articles, config, styles }) => (

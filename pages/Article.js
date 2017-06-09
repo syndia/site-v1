@@ -3,6 +3,7 @@ import { branch, compose, renderComponent, setDisplayName } from 'recompose'
 import { createContainer, query } from '@phenomic/preset-react-app/lib/client'
 import { View } from 'react-primitives'
 
+import withLoadingCheck from '../helpers/withLoadingCheck'
 import withConfig from '../helpers/withConfig'
 import withStyle from '../helpers/withStyle'
 import Layout, { Footer, Header, Sidebar } from '../layout'
@@ -28,6 +29,8 @@ const HOC = compose(
   withStyle({
     root: {},
   }),
+
+  withLoadingCheck,
 
   branch(
     ({ hasError }) => hasError,

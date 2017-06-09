@@ -3,6 +3,7 @@ import { compose, setDisplayName } from 'recompose'
 import { createContainer, query } from '@phenomic/preset-react-app/lib/client'
 import { Text } from 'react-primitives'
 
+import withLoadingCheck from '../helpers/withLoadingCheck'
 import withConfig from '../helpers/withConfig'
 import withStyle from '../helpers/withStyle'
 import Layout, { Header, Footer } from '../layout'
@@ -36,6 +37,8 @@ const HOC = compose(
       fontWeight: 'bold',
     },
   }),
+
+  withLoadingCheck,
 )
 
 const Component = ({ articles, isLoading, params, config, styles }) => (
