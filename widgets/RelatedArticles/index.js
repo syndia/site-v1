@@ -1,8 +1,10 @@
 import React from 'react'
 import { compose, mapProps, setDisplayName } from 'recompose'
 import { createContainer, query } from '@phenomic/preset-react-app/lib/client'
-import { Text, View } from 'react-primitives'
+import { Text } from 'react-primitives'
 
+import withConfig from '../../helpers/withConfig'
+import withStyle from '../../helpers/withStyle'
 import Flex from '../../internals/Flex'
 import Container from '../../internals/Container'
 import ArticlesList from '../../lists/ArticlesList'
@@ -10,7 +12,25 @@ import ArticlesList from '../../lists/ArticlesList'
 const HOC = compose(
   setDisplayName('RelatedArticles'),
 
-  mapProps(({ items, currentArticle }) => {
+  withConfig({
+    article: {
+      preview: true,
+      authors: { display: false },
+      date: { display: false },
+      tags: { display: false },
+    }
+  }),
+
+  withStyle({
+    title: {
+      marginTop: 40,
+      marginBottom: 20,
+      fontSize: 16,
+      fontWeight: '200',
+    },
+  }),
+
+  mapProps(({ items, currentArticle, ...rest }) => {
     const articles = []
 
     items.node && items.node.list && items.node.list.forEach(item => {
@@ -18,16 +38,17 @@ const HOC = compose(
     })
 
     return {
+      ...rest,
       articles,
     }
   })
 )
 
-const Component = ({ articles }) => (
+const Component = ({ articles, config, styles }) => (
   <Flex>
     <Container>
-      <Text><h3>{ "Related Articles" }</h3></Text>
-      <ArticlesList items={ articles } />
+      <Text style={ styles.title }>{ "Related Articles" }</Text>
+      <ArticlesList items={ articles } config={ config } />
     </Container>
   </Flex>
 )
@@ -35,6 +56,6 @@ const Component = ({ articles }) => (
 export default createContainer(HOC(Component), props => ({
   items: query({
     collection: 'articles',
-    ...(props.tags ? { by: 'tags', value: props.tags } : {}),
+    ...(props.tags ? { by: 'tags', value: props.tags, limit: 4 } : {}),
   }),
 }))

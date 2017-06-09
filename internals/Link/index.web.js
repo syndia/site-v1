@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-primitives'
 const HOC = compose(
   setDisplayName('Link'),
 
-  mapProps(({ activeClassName, activeStyle, className, style, ...rest }) => ({
+  mapProps(({ activeStyle, style, ...rest }) => ({
     ...rest,
     injectedProps: {
       className: typeof style === 'number' ?

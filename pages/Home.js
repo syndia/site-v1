@@ -3,9 +3,9 @@ import { compose, setDisplayName } from 'recompose'
 import { Image, Text, View } from 'react-primitives'
 
 import withStyle from '../helpers/withStyle'
-
 import Layout, { Header, Footer } from '../layout'
 import Container from '../internals/Container'
+import SvgSideNavigation from '../internals/Svg/Navigation'
 
 const HOC = compose(
   setDisplayName('Homepage'),
@@ -76,6 +76,9 @@ const Component = ({ styles }) => (
         <p style={ { textAlign: 'center' } }>{ "If you have a project that you want to get started, think you need my help with something or just fancy saying hey, then get in touch." }</p>
       </View>
     </Container>
+    <aside>
+      <SvgSideNavigation />
+    </aside>
     <Footer />
   </Layout>
 )

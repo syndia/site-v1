@@ -1,4 +1,4 @@
-import { createEagerFactory, wrapDisplayName } from 'recompose'
+import { createEagerFactory } from 'recompose'
 import { StyleSheet } from 'react-primitives'
 
 export default styles => BaseComponent => {

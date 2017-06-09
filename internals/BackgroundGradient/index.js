@@ -1,8 +1,6 @@
 import React from 'react'
-import { compose, setDisplayName, mapProps, withProps } from 'recompose'
+import { compose, setDisplayName, mapProps } from 'recompose'
 import { StyleSheet } from 'react-primitives'
-
-import withStyle from '../../helpers/withStyle'
 
 const rawStyle = {
   display: 'flex',
@@ -26,7 +24,7 @@ const HOC = compose(
   })),
 )
 
-const Component = ({ start, end, direction, style, children }) => (
+const Component = ({ style, children }) => (
   <div style={ style } className={ StyleSheet.resolve(style).className }>
     { children }
   </div>

@@ -1,9 +1,9 @@
 import React from 'react'
-import { compose, lifecycle, mapProps, setDisplayName, withHandlers, withState } from 'recompose'
-import { omit } from 'lodash'
+import { compose, lifecycle, onlyUpdateForKeys, setDisplayName, withHandlers } from 'recompose'
 import { View } from 'react-primitives'
 import Head from 'react-helmet'
 
+import withStyle from '../../helpers/withStyle'
 import Container from '../../internals/Container'
 
 const SHORTNAME = 'shortname'
@@ -15,13 +15,15 @@ const ON_NEW_COMMENT = 'onNewComment'
 
 const DISQUS_URI = 'disqus.com'
 const DISQUS_PREFIX = 'disqus_'
-const DISQUS_CONFIG = new Set([CATEGORY_ID, IDENTIFIER, ON_NEW_COMMENT, SHORTNAME, TITLE,URL])
+const DISQUS_CONFIG = new Set([CATEGORY_ID, IDENTIFIER, ON_NEW_COMMENT, SHORTNAME, TITLE, URL])
 
 const CAN_USE_DOM = Boolean(
   typeof window !== 'undefined'
   && window.document
   && window.document.createElement
 )
+
+let disqusAdded = false
 
 const copyProps = (context, props, prefix = '') => {
   Object.keys(props).forEach(prop => context[prefix + prop] = props[prop])
@@ -36,7 +38,11 @@ const copyProps = (context, props, prefix = '') => {
 const HOC = compose(
   setDisplayName('DisqusEmbed'),
 
-  withState('disqusAdded', 'setDisqusAdded', false),
+  withStyle({
+    root: {
+      marginTop: 60,
+    },
+  }),
 
   withHandlers({
     loadDisqus: props => () => {
@@ -44,12 +50,12 @@ const HOC = compose(
 
       // extract Disqus props that were supplied to this component
       DISQUS_CONFIG.forEach(prop => {
-        disqusProps[prop] = (Boolean(props[prop]) && props[prop])
+        disqusProps[prop] = Boolean(props[prop]) && props[prop]
       })
 
       if (CAN_USE_DOM) {
         // always set URL
-        if (!props.url || !props.url.length) {
+        if (!props.url || !props.url.length || disqusProps.url !== window.location.href) {
           disqusProps.url = window.location.href
         }
 
@@ -66,8 +72,14 @@ const HOC = compose(
           })
         } else {
           copyProps(window, props, DISQUS_PREFIX)
-          props.setDisqusAdded(true)
+          disqusAdded = true
         }
+      }
+    },
+ 
+    cleanInstance: () => () => {
+      if (CAN_USE_DOM) {
+        window.DISQUS.reset({})
       }
     }
   }),
@@ -80,22 +92,26 @@ const HOC = compose(
     componentDidUpdate() {
       this.props.loadDisqus()
     },
+
+    componentWillUpdate(next) {
+      if (this.props.shortname !== next.shortname) {
+        this.props.cleanInstance()
+      }
+    }
   }),
 
-  mapProps(props => omit(props, ['setDisqusAdded'])),
+  onlyUpdateForKeys(DISQUS_CONFIG),
 )
 
-const Component = ({ disqusAdded, shortname }) => (
-  <View>
-    { ! disqusAdded &&
-      <Head
-        script={ [{
-          async: true,
-          type: 'text/javascript',
-          src: `//${ shortname }.${ DISQUS_URI }/embed.js`,
-        }] }
-      />
-    }
+const Component = ({ shortname, styles }) => (
+  <View style={ styles.root }>
+    <Head
+      script={ [{
+        async: true,
+        type: 'text/javascript',
+        src: `//${ shortname }.${ DISQUS_URI }/embed.js`,
+      }] }
+    />
 
     <Container>
       <div id="disqus_thread" />

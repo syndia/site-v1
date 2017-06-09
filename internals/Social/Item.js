@@ -4,10 +4,9 @@ import { memoize } from 'lodash'
 import { Text } from 'react-primitives'
 
 import withConfig from '../../helpers/withConfig'
+import Link from '../Link'
 
-import Link from '../../internals/Link'
-
-import * as Icons from './icons'
+import * as Icons from './icons' // eslint-disable-line import/no-namespace
 import { FACEBOOK, GITHUB, GOOGLE_PLUS, INSTAGRAM, LINKEDIN, TWITTER } from './providers'
 
 const PROVIDER_REGEXP = new Map([
@@ -29,11 +28,11 @@ const PROVIDER_NAMES = new Map([
 ])
 
 const PROVIDER_ICONS = new Map([
-  [FACEBOOK, <Icons.Facebook />],
-  [GITHUB, <Icons.GitHub />],
-  [GOOGLE_PLUS, <Icons.GooglePlus />],
-  [LINKEDIN, <Icons.LinkedIn />],
-  [TWITTER, <Icons.Twitter />],
+  [FACEBOOK, <Icons.Facebook key="facebook-icon" />],
+  [GITHUB, <Icons.GitHub key="github-icon" />],
+  [GOOGLE_PLUS, <Icons.GooglePlus key="googleplus-icon" />],
+  [LINKEDIN, <Icons.LinkedIn key="linkedin-icon" />],
+  [TWITTER, <Icons.Twitter key="twitter-icon" />],
 ])
 
 const getProvider = memoize(url => {

@@ -1,4 +1,4 @@
-import { createEagerFactory, wrapDisplayName } from 'recompose'
+import { createEagerFactory } from 'recompose'
 import { merge } from 'lodash'
 
 export default config => BaseComponent => {

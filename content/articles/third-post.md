@@ -1,19 +1,19 @@
 ---
-title: Markdown
+title: Third Post
 teaser: If you are new to Markdown, you might want to read this article
 hero:
-  id: "1496715976403-7e36dc43f17b"
-  caption: "Photo by Jeremy Bishop"
+  id: "1496167117681-944f702be1f4"
+  caption: "Photo by Scott Webb"
   orientation: "landscape"
-  dark: true
+authors:
+  - Syndia
+  - John Ripke
+date: 2016-03-31
+type: post
 tags:
   - react
   - markdown
-date: 2016-01-01
-authors:
-  - john-ripke
 comments: true
-type: post
 ---
 
 # This is a [Markdown](https://en.wikipedia.org/wiki/Markdown#Example) file

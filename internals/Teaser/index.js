@@ -20,7 +20,7 @@ const HOC = compose(
   }),
 )
 
-const Component = ({ text, config, styles }) => (
+const Component = ({ text, styles }) => (
   <View style={ styles.root }>
     <Text style={ styles.text }>
       { text }

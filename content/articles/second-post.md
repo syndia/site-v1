@@ -1,10 +1,14 @@
 ---
 title: Second Post
 teaser: If you are new to Markdown, you might want to read this article
+hero:
+  id: "1487190296540-b92a6b829973"
+  caption: "Photo by Scott Webb"
+  orientation: "landscape"
 authors:
   - Syndia
   - John Ripke
-date: 2016-02-14
+date: 2016-02-21
 type: post
 tags:
   - react

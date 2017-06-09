@@ -11,7 +11,7 @@ const dateTimeFormatGetter = date => {
   return DATETIME
 }
 
-export { Relative } from './Time'
+export { Relative } from './Relative'
 export const Time = createTime('Time', TIME)
 export const DateTime = createTime('DateTime', dateTimeFormatGetter)
 export const Day = createTime('Day', 'dddd')

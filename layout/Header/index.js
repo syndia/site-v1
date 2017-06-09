@@ -2,15 +2,12 @@ import React from 'react'
 import { compose, setDisplayName } from 'recompose'
 import Head from 'react-helmet'
 import { View, Text } from 'react-primitives'
-import { mapStyle } from 'highstyle'
 
 import withStyle from '../../helpers/withStyle'
-
 import BackgroundGradient from '../../internals/BackgroundGradient'
 import Container from '../../internals/Container'
 import Teaser from '../../internals/Teaser'
 import Hero from '../../widgets/Hero'
-
 import Masterbar from '../Masterbar'
 
 const HOC = compose(

@@ -3,7 +3,6 @@ import { compose, setDisplayName } from 'recompose'
 import { View, Text } from 'react-primitives'
 
 import withStyle from '../../helpers/withStyle'
-
 import Link from '../../internals/Link'
 
 const HOC = compose(

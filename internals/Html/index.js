@@ -1,5 +1,4 @@
 import React from 'react'
-import { compose, setDisplayName, withProps } from 'recompose'
 import Head from 'react-helmet'
 import { StyleSheet } from 'react-primitives'
 

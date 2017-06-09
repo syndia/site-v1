@@ -3,7 +3,6 @@ import { compose, mapProps, setDisplayName } from 'recompose'
 import { Image, Text, View } from 'react-primitives'
 
 import withStyle from '../../helpers/withStyle'
-
 import { createUnsplashSource } from '../../widgets/UnsplashImages/utilities'
 
 const HOC = compose(

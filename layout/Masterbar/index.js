@@ -3,10 +3,8 @@ import { compose, setDisplayName } from 'recompose'
 import { Text, View } from 'react-primitives'
 
 import withStyle from '../../helpers/withStyle'
-
 import Link from '../../internals/Link'
 import SocialItem from '../../internals/Social/Item'
-
 import { version } from '../../package.json'
 
 const HOC = compose(
@@ -97,7 +95,7 @@ const Component = ({ darkContrast, styles }) => (
       </Link>
     </View>
     <View style={ styles.navigation }>
-      <Link to="/blog" style={ styles.link } activeStyle={ styles.linkActive }>
+      <Link to="/articles" style={ styles.link } activeStyle={ styles.linkActive }>
         <Text style={ [styles.linkText, darkContrast && styles.colorWhite] }>
           { "Blog" }
         </Text>
