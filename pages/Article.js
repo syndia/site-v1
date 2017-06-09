@@ -3,7 +3,6 @@ import { branch, compose, renderComponent, setDisplayName } from 'recompose'
 import { createContainer, query } from '@phenomic/preset-react-app/lib/client'
 import { View } from 'react-primitives'
 
-import withLoadingCheck from '../helpers/withLoadingCheck'
 import withConfig from '../helpers/withConfig'
 import withStyle from '../helpers/withStyle'
 import Layout, { Footer, Header, Sidebar } from '../layout'
@@ -30,17 +29,15 @@ const HOC = compose(
     root: {},
   }),
 
-  withLoadingCheck,
-
   branch(
     ({ hasError }) => hasError,
     renderComponent(ArticleError),
   ),
 )
 
-const Component = ({ post, styles, config }) => (
+const Component = ({ post, isLoading, styles, config }) => (
   <Layout style={ styles.root }>
-    { post && post.node &&
+    { !isLoading && post && post.node &&
       <View>
         <Header title={ post.node.title } teaser={ post.node.teaser } hero={ post.node.hero } config={ config } />
         <Container>
